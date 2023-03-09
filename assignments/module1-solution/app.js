@@ -9,7 +9,7 @@ LunchCheckController.$inject = ['$scope'];
 function LunchCheckController($scope) {
   $scope.dishes = '';
 
-  $scope.getStyle = function () {
+  $scope.getStyle = function () { 
     var style = {};
     if ($scope.message === "Enjoy!" || $scope.message === "Too much!") {
       style.color = "green";
