@@ -5,28 +5,19 @@ angular.module('ShoppingListDirectiveApp', [])
 .controller('ShoppingListController1', ShoppingListController1)
 .controller('ShoppingListController2', ShoppingListController2)
 .factory('ShoppingListFactory', ShoppingListFactory)
-.directive('listItemDescription', ListItemDescription)
-.directive('listItem', ListItem);
+.directive('shoppingList', ShoppingList)
 
+function ShoppingList() {
+    var ddo = {
+        templateUrl: 'shoppingList.html',
+        scope: {
+          list: "=myList",
+          title: '@title'
+        }
+    };
 
-function ListItem() {
-  var ddo = {
-    restrict: "AE",
-    templateUrl: 'listItem.html'
-  };
-
-  return ddo;
+    return ddo;
 }
-
-
-function ListItemDescription() {
-  var ddo = {
-    template: '{{ item.quantity }} of {{ item.name }}'
-  };
-
-  return ddo;
-}
-
 
 // LIST #1 - controller
 ShoppingListController1.$inject = ['ShoppingListFactory'];
@@ -37,16 +28,20 @@ function ShoppingListController1(ShoppingListFactory) {
   var shoppingList = ShoppingListFactory();
 
   list.items = shoppingList.getItems();
+  var origTitle = "Shopping List #1";
+  list.title = origTitle + " (" + list.items.length + " items )";
 
   list.itemName = "";
   list.itemQuantity = "";
 
   list.addItem = function () {
     shoppingList.addItem(list.itemName, list.itemQuantity);
+    list.title = origTitle + " (" + list.items.length + " items )";
   }
 
   list.removeItem = function (itemIndex) {
     shoppingList.removeItem(itemIndex);
+    list.title = origTitle + " (" + list.items.length + " items )";
   };
 }
 
@@ -54,26 +49,26 @@ function ShoppingListController1(ShoppingListFactory) {
 // LIST #2 - controller
 ShoppingListController2.$inject = ['ShoppingListFactory'];
 function ShoppingListController2(ShoppingListFactory) {
-  var list2 = this;
+  var list = this;
 
   // Use factory to create new shopping list service
   var shoppingList = ShoppingListFactory(3);
 
-  list2.items = shoppingList.getItems();
+  list.items = shoppingList.getItems();
 
-  list2.itemName = "";
-  list2.itemQuantity = "";
+  list.itemName = "";
+  list.itemQuantity = "";
 
-  list2.addItem = function () {
+  list.addItem = function () {
     try {
-      shoppingList.addItem(list2.itemName, list2.itemQuantity);
+      shoppingList.addItem(list.itemName, list.itemQuantity);
     } catch (error) {
-      list2.errorMessage = error.message;
+      list.errorMessage = error.message;
     }
 
   };
 
-  list2.removeItem = function (itemIndex) {
+  list.removeItem = function (itemIndex) {
     shoppingList.removeItem(itemIndex);
   };
 }
