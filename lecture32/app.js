@@ -12,13 +12,13 @@ function ShoppingListDirective() {
         scope: {
           items: '<',
           myTitle: '@title',
-          badRemove: '=',
           onRemove: '&'
         },
         controller: ShoppingListDirectiveController,
         controllerAs: 'list',
         bindToController: true,
-        link: ShoppingListDirectiveLink
+        link: ShoppingListDirectiveLink,
+        transclude: true
     };
 
     return ddo;
@@ -92,7 +92,7 @@ function ShoppingListController(ShoppingListFactory) {
   list.title = origTitle + " (" + list.items.length + " items )";
 
   list.warning = "COOKIES DETECTED!";
-  
+
   list.itemName = "";
   list.itemQuantity = "";
 
