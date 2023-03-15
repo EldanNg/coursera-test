@@ -12,7 +12,6 @@ function ShoppingListDirective() {
         scope: {
           items: '<',
           myTitle: '@title',
-          badRemove: '=',
           onRemove: '&'
         },
         controller: ShoppingListDirectiveController,
