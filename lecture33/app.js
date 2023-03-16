@@ -14,7 +14,8 @@ angular.module('ShoppingListComponentApp', [])
   }
 });
 
-function ShoppingListComponentController() {
+ShoppingListComponentController.$inject = ['$scope', '$element']
+function ShoppingListComponentController($scope, $element) {
   // $ctrl over here can be whatever, it is just a local variable.
   var $ctrl = this;
 
@@ -32,6 +33,34 @@ function ShoppingListComponentController() {
   $ctrl.remove = function (myIndex) {
     // the below 'index' which is the key comes from index.html
     $ctrl.onRemove({ index: myIndex });
+  };
+
+  $ctrl.$onInit = function () {
+    console.log("We are in $onInit()");
+  }
+
+  $ctrl.$onChanges = function (changeObj) {
+    // The reason the items array is not detected here is because the only thing that is being watched are the items array that is the reference to that items array. The reference will remains the same no matter what items you add in the items array in this instance.
+    console.log("Changes: ", changeObj);
+  }
+
+  // Unlike directive, you don't have scope, element etc in this function. However, there is another service called $element which you have to inject. This is how we can get the parent item or top item of our component.
+  $ctrl.$postLink = function () {
+    // This is the place where you can manipulate the DOM. This is not necssarily the best way to have animations in template HTML.
+    $scope.$watch('$ctrl.cookiesInList()', function (newValue, oldValue) {
+      console.log($element);
+      if (newValue === true) {
+        // Show warning
+        // With JQuery, $element represent an element as a JQuery object.
+        var warningElem = $element.find('div.error');
+        warningElem.slideDown(900);
+      }
+      else {
+        // Hide warning
+        var warningElem = $element.find('div.error');
+        warningElem.slideUp(900);
+      }
+    })
   };
 }
 
