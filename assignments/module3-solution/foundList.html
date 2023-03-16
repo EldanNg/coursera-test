@@ -1,0 +1,9 @@
+<br>
+  <h3>{{ list.myTitle }}</h3>
+  <ol>
+    <li ng-repeat="item in list.items track by $index">
+      {{ item }}
+      <button ng-click="list.onRemove({index: $index});">Don't want this one!</button>
+    </li>
+  </ol>
+  <div class="error" ng-if="list.empty() || list.error">Nothing found</div>
