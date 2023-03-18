@@ -1,0 +1,46 @@
+body {
+  font-size: 1.2em;
+}
+
+.welcome {
+  text-align: center;
+  font: bold;
+  color: blue;
+  border: 2px solid red;
+  border-radius: 16px;
+  background-color: pink;
+}
+
+.home {
+  text-align: center;
+  color: orange;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.content {
+  font-weight: normal;
+  color: orange;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  display: none;
+}
+
+.loading-icon {
+  position: absolute;
+  left: 50%;
+  top: 10px;
+}
+
+li[ui-sref]:hover {
+  /* display: inline-block; */
+  cursor: pointer;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: yellow;
+}
