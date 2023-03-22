@@ -129,10 +129,17 @@ h2#myinfo-title {
   color: black;
 }
 
-/* .signup-btn {
-  width: 100%;
-} */
+.col-md-6 {
+  float: none !important;
+  width: 100% !important;
+}
 
+.menu-item {
+  border-top: 4px solid orange;
+  margin-top: 24px;
+  padding-top: 24px;
+  text-align: center;
+}
 
 /* END MY INFO PAGE */
 
