@@ -1,0 +1,42 @@
+<form name='regForm' novalidate>
+  <div class="form-group">
+    <fieldset>
+      <input type="text" name="firstname" placeholder="First Name" ng-model="reg.user.firstname" required minlength="4"
+      ng-maxlength="10" class="form-control">
+      <div class="errors" ng-if="(regForm.firstname.$error.minlength || regForm.firstname.$error.required) && regForm.firstname.$touched">
+        First name must be at least 4 characters long
+      </div>
+
+      <input type="text" name="lastname" placeholder="Last Name" ng-model="reg.user.lastname" required minlength="4"
+      ng-maxlength="10" class="form-control">
+      <div class="errors" ng-if="(regForm.lastname.$error.minlength || regForm.lastname.$error.required) && regForm.lastname.$touched">
+        Last name must be at least 4 characters long
+      </div>
+    </fieldset>
+
+    <input type="email" name="email" placeholder="Email" ng-model="reg.user.email"  required class="form-control">
+    <div class="errors"ng-if="(regForm.email.$invalid || regForm.email.$error.required) && regForm.email.$touched">
+      Must be a valid email address
+    </div>
+
+    <input type="text" name="phone" placeholder="Phone ###-###-####" ng-model="reg.user.phone" required
+    pattern="(\d{3})-(\d{3})-(\d{4})" class="form-control">
+    <div class="errors" ng-if="(regForm.phone.$invalid || regForm.phone.$error.required) && regForm.phone.$touched">
+      Phone must be in the format ###-###-####.
+    </div>
+
+    <input type="text" name="favorite" placeholder="Favorite Menu Dish Number" ng-model="reg.user.favorite" ng-blur="$ctrl.validateFavoriteItem(reg.user.favorite)" required class="form-control">
+    <div class="errors" ng-if="(regForm.favorite.$invalid || regForm.favorite.$error.required) && regForm.favorite.$touched">
+      Required
+    </div>
+    <div class="errors text-center" ng-if="$ctrl.errorMessage">{{ $ctrl.errorMessage }}</div>
+    <div class="success text-center" ng-style="" ng-if="$ctrl.successMessage">{{ $ctrl.successMessage }}</div>
+  </div>
+
+  <div style="margin-bottom: 10px; font-size: 14px; color: black;">
+    All fields are required.
+  </div>
+
+  <button ng-disabled="regForm.$invalid" ng-click="$ctrl.submit(regForm)" class="btn btn-primary signup-btn">Sign Up</button>
+
+</form>

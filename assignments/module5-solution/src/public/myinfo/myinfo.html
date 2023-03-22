@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="myinfo" ng-if="!myInfoCtrl.emptyUserObject">
+    <h2 id="myinfo-title" class="text-center">My Information</h2>
+    <my-info info="myInfoCtrl.user" favorite="myInfoCtrl.favorite"></my-info>
+  </div>
+
+  <div ng-if="myInfoCtrl.emptyUserObject">
+    <div class="alert alert-danger">
+      <div>
+        Not Signed Up Yet.
+        <button ui-sref="public.signup" class="btn btn-primary">Sign Up Now!</button>
+      </div>
+    </div>
+  </div>
+
+</div>

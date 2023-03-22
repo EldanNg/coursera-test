@@ -1,0 +1,22 @@
+<div class="mydetail">
+  <span>First Name:
+    {{ $ctrl.info.firstname }}
+  </span><br>
+  <span>Last Name:
+    {{ $ctrl.info.lastname }}
+  </span><br>
+  <span>Email:
+    {{ $ctrl.info.email }}
+  </span><br>
+  <span>Phone:
+    {{ $ctrl.info.phone }}
+  </span><br>
+  <span>Favorite Item:
+    {{ $ctrl.info.favorite }}
+  </span><br>
+
+  <div class="text-center">
+    <menu-item menu-item="$ctrl.favorite" category-short-name="$ctrl.favorite.category">
+    </menu-item>
+  </div>
+</div>
